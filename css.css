@@ -462,6 +462,24 @@ footer {
 @media screen and (max-width: 768px) {
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-header);
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+        z-index: 999;
+    }
+    
+    .nav-links.mobile-active {
+        display: flex !important;
+    }
+
+    .nav-links li {
+        text-align: center;
+        padding: 0.5rem 0;
     }
 
     .mobile-menu {
@@ -492,7 +510,6 @@ footer {
         height: 200px;
     }
 }
-
 /* ================================
    ANIMATIONS
    ================================ */
