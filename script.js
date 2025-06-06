@@ -289,3 +289,57 @@ window.addEventListener('load', () => {
     const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
     console.log(`Page loaded in ${loadTime}ms`);
 });
+
+// ================================
+// SIMPLE LANGUAGE SWITCHER
+// ================================
+let currentLang = 'fi';
+const originalTexts = new Map();
+
+// Tallenna alkuperäiset tekstit
+function saveOriginalTexts() {
+    document.querySelectorAll('[data-en]').forEach(element => {
+        originalTexts.set(element, element.textContent);
+    });
+}
+
+// Vaihda kieli
+function switchLanguage(lang) {
+    if (lang === 'en') {
+        document.querySelectorAll('[data-en]').forEach(element => {
+            element.textContent = element.getAttribute('data-en');
+        });
+    } else {
+        document.querySelectorAll('[data-en]').forEach(element => {
+            element.textContent = originalTexts.get(element);
+        });
+    }
+    
+    currentLang = lang;
+    localStorage.setItem('selectedLanguage', lang);
+    
+    // Päivitä napit
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+}
+
+// Alusta kielenvaihtaja
+document.addEventListener('DOMContentLoaded', function() {
+    saveOriginalTexts();
+    
+    // Lataa tallennettu kieli
+    const savedLang = localStorage.getItem('selectedLanguage') || 'fi';
+    if (savedLang === 'en') {
+        switchLanguage('en');
+    }
+    
+    // Lisää click-eventit
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
+});

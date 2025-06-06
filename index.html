@@ -17,12 +17,18 @@
             <div class="logo">
     <i class="fas fa-code"></i> KM
 </div>
-            <ul class="nav-links">
-                <li><a href="#home">Koti</a></li>
-                <li><a href="#skills">Taidot</a></li>
-                <li><a href="#projects">Projektit</a></li>
-                <li><a href="#contact">Yhteystiedot</a></li>
-            </ul>
+        <ul class="nav-links">
+            <li><a href="#home" data-en="Home">Koti</a></li>
+            <li><a href="#skills" data-en="Skills">Taidot</a></li>
+            <li><a href="#projects" data-en="Projects">Projektit</a></li>
+            <li><a href="#contact" data-en="Contact">Yhteystiedot</a></li>
+        </ul>
+
+            <div class="language-switcher">
+            <button class="lang-btn active" data-lang="fi">FI</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
             <div class="mobile-menu">
                 <span></span>
                 <span></span>
@@ -34,13 +40,13 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Kari Markus</h1>
-            <h2>ICT- ja ohjelmistokehittäjäopiskelija etsii harjoittelupaikkaa!</h2>
-            <p>Olen 38-vuotias kahden lapsen isä ja koulunkäynninohjaaja. Yli kymmenen vuoden työkokemukseni yleisopetuksen ja erityisopetuksen ryhmien ohjaajana on antanut minulle vahvan osaamisen ja kyvyn tukea oppilaita erilaisissa oppimistilanteissa. Olen tehnyt alan vaihdon ja opiskelen nyt ohjelmistokehittäjäksi Oulun Osaolla. Olen oppinut valtavasti ja etsin nyt harjoittelupaikkaa syksylle 2025! <br> Vapaa-ajallani harrastan rumpujen soittoa, musiikkia, lukemista, pelaamista, tennistä ja nautin luonnossa samoilusta. </p>
+            <h2 data-en="ICT and software development student seeking internship!">ICT- ja ohjelmistokehittäjäopiskelija etsii harjoittelupaikkaa!</h2>
+            <p data-en="I'm a 38-year-old father of two and a special needs assistant. My over ten years of experience guiding students in general and special education has given me strong skills and ability to support students in various learning situations. I've made a career change and am now studying to become a software developer at Osao Oulu. I've learned tremendously and am now looking for an internship for fall 2025!">Olen 38-vuotias kahden lapsen isä ja koulunkäynninohjaaja. Yli kymmenen vuoden työkokemukseni yleisopetuksen ja erityisopetuksen ryhmien ohjaajana on antanut minulle vahvan osaamisen ja kyvyn tukea oppilaita erilaisissa oppimistilanteissa. Olen tehnyt alan vaihdon ja opiskelen nyt ohjelmistokehittäjäksi Oulun Osaolla. Olen oppinut valtavasti ja etsin nyt harjoittelupaikkaa syksylle 2025! </p>
             <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                <a href="CV.pdf" class="btn" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-download"></i> Lataa CV
+               <a href="CV.pdf" class="btn" target="_blank" rel="noopener noreferrer" data-en="📄 Download CV">
+                    <i class="fas fa-download"></i>📄 Lataa CV
                 </a>
-                <a href="#contact" class="btn btn-secondary">Ota yhteyttä</a>
+                <a href="#contact" class="btn btn-secondary" data-en="Contact me">Ota yhteyttä</a>
             </div>
         </div>
         <div class="hero-image">
@@ -49,157 +55,157 @@
     </section>
 
     <section id="skills" class="skills">
-        <div class="skills-container">
-            <h2 class="section-title">Taidot & Osaaminen</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fab fa-html5"></i>
-                    <h3>Frontend</h3>
-                    <p>HTML, CSS, JavaScript</p>
-                    <p>Opiskelija, Entry Level</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Backend</h3>
-                    <p>Python, Tietokannat</p>
-                    <p>Opiskelija, Entry Level</p>
-                </div>
-                <!-- <div class="skill-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Responsiivinen</h3>
-                    <p>Mobile-first, Progressive Web Apps</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Tiimityö</h3>
-                    <p>Agile, Scrum, Git versiointi</p> -->
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Opetus</h3>
-                    <p>10+ vuotta koulutusalalla</p>
-                    <p>Yleisopetus ja erityisopetus</p>
-                    <p>Vahva pedagoginen osaaminen</p>
-                </div><br>
-                <div class="skill-card">
-                    <i class="fas fa-music"></i>
-                    <h3>Luovuus</h3>
-                    <p>Rummut, musiikki, visuaalisuus</p>
-                    <p>Soittaminen ollut vahvasti elämässä mukana lapsesta asti</p>
+    <div class="skills-container">
+        <h2 class="section-title" data-en="Skills & Expertise">Taidot & Osaaminen</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-html5"></i>
+                <h3 data-en="Frontend">Frontend</h3>
+                <p data-en="HTML, CSS, JavaScript">HTML, CSS, JavaScript</p>
+                <p data-en="Student, Entry Level">Opiskelija, Entry Level</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-server"></i>
+                <h3 data-en="Backend">Backend</h3>
+                <p data-en="Python, Databases">Python, Tietokannat</p>
+                <p data-en="Student, Entry Level">Opiskelija, Entry Level</p>
+            </div>
+            <!-- <div class="skill-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Responsiivinen</h3>
+                <p>Mobile-first, Progressive Web Apps</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-users"></i>
+                <h3>Tiimityö</h3>
+                <p>Agile, Scrum, Git versiointi</p> -->
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3 data-en="Education">Opetus</h3>
+                <p data-en="10+ years in education field">10+ vuotta koulutusalalla</p>
+                <p data-en="General and special education">Yleisopetus ja erityisopetus</p>
+                <p data-en="Strong pedagogical expertise">Vahva pedagoginen osaaminen</p>
+            </div><br>
+            <div class="skill-card">
+                <i class="fas fa-music"></i>
+                <h3 data-en="Creativity">Luovuus</h3>
+                <p data-en="Drums, music, visuality">Rummut, musiikki, visuaalisuus</p>
+                <p data-en="Playing music has been strongly part of my life since childhood">Soittaminen ollut vahvasti elämässä mukana lapsesta asti</p>
                 </div>
             </div>
     </section>
 
     <section id="projects" class="projects">
-        <div class="projects-container">
-            <h2 class="section-title">Projektit</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="Näyttökuva 2025-06-05 173811.png" alt="Portfolio" />
-                    <div class="project-content">
-                        <h3>Portfolio-sivusto</h3>
-                        <p>Moderni, tyylikäs ja responsiivinen portfolio-sivusto HTML, CSS ja JavaScriptillä toteutettuna.</p>
-                        <div class="project-links">
-                        <a href="https://markar07.github.io/Portfolio/" class="btn" target="_blank" rel="noopener noreferrer">Linkki</a>
-                        <a href="https://github.com/MarKar07/Portfolio/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
+    <div class="projects-container">
+        <h2 class="section-title" data-en="Projects">Projektit</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="Näyttökuva 2025-06-05 173811.png" alt="Portfolio" />
+                <div class="project-content">
+                    <h3 data-en="Portfolio Website">Portfolio-sivusto</h3>
+                    <p data-en="Modern, stylish and responsive portfolio website built with HTML, CSS and JavaScript.">Moderni, tyylikäs ja responsiivinen portfolio-sivusto HTML, CSS ja JavaScriptillä toteutettuna.</p>
+                    <div class="project-links">
+                    <a href="https://markar07.github.io/Portfolio/" class="btn" target="_blank" rel="noopener noreferrer" data-en="Link">Linkki</a>
+                    <a href="https://github.com/MarKar07/Portfolio/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <img src="Näyttökuva 2025-06-05 173938.png" alt="Web Page" />
-                    <div class="project-content">
-                        <h3>Web-sivut</h3>
-                        <p>Näyttötyö 2025 Kevät, web-sivusto HTML, CSS, JavaScriptillä ja JQueryllä toteutettuna.</p>
-                        <div class="project-links">
-                            <a href="https://geronimo.okol.org/~markar/" class="btn" target="_blank" rel="noopener noreferrer">Linkki</a>
-                            <a href="https://github.com/MarKar07/Nayttotyo" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="Näyttökuva 2025-06-05 173938.png" alt="Web Page" />
+                <div class="project-content">
+                    <h3 data-en="Web Pages">Web-sivut</h3>
+                    <p data-en="Demonstration project Spring 2025, website built with HTML, CSS, JavaScript and jQuery.">Näyttötyö 2025 Kevät, web-sivusto HTML, CSS, JavaScriptillä ja JQueryllä toteutettuna.</p>
+                    <div class="project-links">
+                        <a href="https://geronimo.okol.org/~markar/" class="btn" target="_blank" rel="noopener noreferrer" data-en="Link">Linkki</a>
+                        <a href="https://github.com/MarKar07/Nayttotyo" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <img src="Näyttökuva 2025-06-05 175248.png" alt="Wordpress" />
-                    <div class="project-content">
-                        <h3>Tulossa pian...</h3>
-                        <p>Uusi WordPress-projekti tulossa. Seuraa kehitystä GitHubista ja ota yhteyttä lisätietoja varten!</p>
-                        <div class="project-links">
-                            <a href="#contact" class="btn">Ota yhteyttä</a>
-                        </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="Näyttökuva 2025-06-05 175248.png" alt="Wordpress" />
+                <div class="project-content">
+                    <h3 data-en="Coming Soon...">Tulossa pian...</h3>
+                    <p data-en="New WordPress project coming. Follow the development on GitHub and contact me for more information!">Uusi WordPress-projekti tulossa. Seuraa kehitystä GitHubista ja ota yhteyttä lisätietoja varten!</p>
+                    <div class="project-links">
+                        <a href="#contact" class="btn" data-en="Contact me">Ota yhteyttä</a>
                     </div>
                 </div>
             </div>
         </div>
-         <div class="video-container">
-                <h3 style="margin-bottom: 2rem;">Bändini musiikkivideo</h3>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Eb1X2LpQvhY?si=e5H826p7uwBcRUxN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+     <div class="video-container">
+            <h3 style="margin-bottom: 2rem;" data-en="My band's music video">Bändini musiikkivideo</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Eb1X2LpQvhY?si=e5H826p7uwBcRUxN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact">
-        <div class="contact-container">
-            <h2 class="section-title">Ota yhteyttä</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Yhteystiedot</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>s4maka07 [at] students [dot] osao [dot] fi</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>Pyydä puhelinnumeroa sähköpostitse tai katso CV:stä</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Oulu ja Helsinki, Suomi</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <a href="https://www.linkedin.com/in/kari-markus/" target="_blank" rel="noopener noreferrer">LinkedIn-profiili</a>
-                        
-                    </div>
+    <div class="contact-container">
+        <h2 class="section-title" data-en="Contact">Ota yhteyttä</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3 data-en="Contact Information">Yhteystiedot</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>s4maka07 [at] students [dot] osao [dot] fi</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span data-en="Request phone number by email or see CV">Pyydä puhelinnumeroa sähköpostitse tai katso CV:stä</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span data-en="Oulu and Helsinki, Finland">Oulu ja Helsinki, Suomi</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/kari-markus/" target="_blank" rel="noopener noreferrer" data-en="LinkedIn Profile">LinkedIn-profiili</a>
                     
                 </div>
                 
-                <form class="contact-form" action="https://formspree.io/f/xanjqngv" method="POST">
-                    <div class="form-group">
-                        <label for="name">Nimi</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Sähköposti</label>
-                        <input type="email" id="email" name="_replyto" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Viesti</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    
-                    <!-- Piilotettu spam-suoja -->
-                    <input type="hidden" name="_subject" value="Uusi viesti portfoliosta - Kari Markus">
-                    <input type="hidden" name="_next" value="https://sinun-sivustosi.com/kiitos.html">
-                    
-                    <button type="submit" class="btn">
-                        <i class="fas fa-paper-plane"></i> Lähetä viesti
-                    </button>
-                </form>
             </div>
+            
+            <form class="contact-form" action="https://formspree.io/f/xanjqngv" method="POST">
+                <div class="form-group">
+                    <label for="name" data-en="Name">Nimi</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-en="Email">Sähköposti</label>
+                    <input type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" data-en="Message">Viesti</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <!-- Piilotettu spam-suoja -->
+                <input type="hidden" name="_subject" value="Uusi viesti portfoliosta - Kari Markus">
+                <input type="hidden" name="_next" value="https://sinun-sivustosi.com/kiitos.html">
+                
+                <button type="submit" class="btn" data-en="Send Message">
+                    <i class="fas fa-paper-plane"></i> Lähetä viesti
+                </button>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Kari Markus. Kaikki oikeudet pidätetään.</p>
-            <div class="social-links">
-                <a href="https://github.com/MarKar07" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/kari-markus/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            </div>
+<footer>
+    <div class="footer-content">
+        <p data-en="&copy; 2025 Kari Markus. All rights reserved.">&copy; 2025 Kari Markus. Kaikki oikeudet pidätetään.</p>
+        <div class="social-links">
+            <a href="https://github.com/MarKar07" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/kari-markus/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
