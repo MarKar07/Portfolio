@@ -1,0 +1,618 @@
+/* ================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ================================ */
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-header: #1a1a2e;
+    --text-primary: #fbbf24;
+    --text-secondary: #d1d5db;
+    --accent-color: #f59e0b;
+    --accent-hover: #ef4444;
+    --border-color: rgba(245, 158, 11, 0.2);
+    --shadow: 0 5px 20px rgba(245, 158, 11, 0.1);
+}
+
+/* ================================
+   GLOBAL RESET & BASE STYLES
+   ================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* ================================
+   NAVIGATION
+   ================================ */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--bg-header);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ================================
+   HERO SECTION
+   ================================ */
+.hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    gap: 4rem;
+}
+
+.hero-content {
+    padding-top: 100px;
+}
+
+.hero h1 {
+    font-size: 2.2rem;  /* 2.8rem -> 2.2rem (merkittävä pienennys) */
+    font-weight: 700;
+    margin-bottom: 0.8rem;  /* 1rem -> 0.8rem */
+    background: linear-gradient(135deg, var(--accent-color), #ff8888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero h2 {
+    font-size: 1rem;  /* 1.2rem -> 1rem */
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;  /* 1.5rem -> 1.2rem */
+    font-weight: 400;
+}
+
+.hero p {
+    font-size: 0.9rem;  /* 1rem -> 0.9rem */
+    line-height: 1.6;  /* 1.7 -> 1.6 */
+    margin-bottom: 1.2rem;  /* 1.5rem -> 1.2rem */
+    color: var(--text-secondary);
+}
+
+.hero-image {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
+}
+
+/* ================================
+   BUTTONS
+   ================================ */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;  /* 12px 24px -> 10px 20px */
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 0.9rem;  /* Lisätty pienempää fonttikokoa */
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 18px;  /* Hieman pienempi koska border vie tilaa */
+}
+
+.btn-secondary:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* ================================
+   SKILLS SECTION
+   ================================ */
+.skills {
+    padding: 5rem 2rem;
+    background: var(--bg-secondary);
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.skill-card {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+}
+
+.skill-card i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.skill-card h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.video-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.video-container iframe {
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+/* ================================
+   PROJECTS SECTION
+   ================================ */
+.projects {
+    padding: 5rem 2rem;
+    background: var(--bg-primary);
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-content {
+    padding: 1.5rem;
+}
+
+.project-content h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.project-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+/* ================================
+   CONTACT SECTION
+   ================================ */
+.contact {
+    padding: 5rem 2rem;
+    background: var(--bg-secondary);
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.contact-info h3 {
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-right: 1rem;
+    width: 20px;
+}
+
+.contact-form {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer {
+    background: var(--bg-header);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+/* ================================
+   MOBILE MENU
+   ================================ */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.mobile-menu span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-container iframe {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* ================================
+   ANIMATIONS
+   ================================ */
+
+/* 3D-tausta ja shadow-efektit hero-kuvalle - HIENOVARAISEMMAT */
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(5deg);
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, 
+        rgba(245, 158, 11, 0.15), 
+        rgba(239, 68, 68, 0.1), 
+        transparent 70%);
+    border-radius: 50%;
+    filter: blur(25px);
+    z-index: -1;
+    animation: float 8s ease-in-out infinite;
+}
+
+.hero-image::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, 
+        rgba(239, 68, 68, 0.1), 
+        rgba(245, 158, 11, 0.08), 
+        transparent 60%);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: -1;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+/* Floating animaatio taustaelementeille - hienovaraisempi */
+@keyframes float {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(5deg) translateY(0px);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(5deg) translateY(-10px);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomInFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-10deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1) rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+.logo i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.hero-content {
+    animation: slideInFromLeft 1.2s ease;
+}
+
+.hero-image img {
+    /* Alkutila - piilotettu ja pienennetty */
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animaatioluokka joka lisätään JavaScriptillä */
+.hero-image img.animate-in {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.skill-card {
+    animation: easeInUp 1s ease forwards;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+}
+
+/* ================================
+   SCROLL INDICATOR
+   ================================ */
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent-color);
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
