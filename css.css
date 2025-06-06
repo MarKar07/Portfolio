@@ -57,6 +57,12 @@ nav {
     padding: 0 2rem;
 }
 
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -341,6 +347,27 @@ nav {
     width: 20px;
 }
 
+/* Click-to-reveal yhteystiedot */
+.contact-reveal {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-hidden {
+    color: var(--accent-color);
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.contact-hidden:hover {
+    color: var(--accent-hover);
+}
+
+.contact-shown {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
 .contact-form {
     background: var(--bg-primary);
     padding: 2rem;
@@ -557,7 +584,7 @@ footer {
 }
 
 .logo {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent-color);
     display: flex;
@@ -598,7 +625,7 @@ footer {
 }
 
 .skill-card {
-    animation: easeInUp 1s ease forwards;
+    animation: easeInUp 0.5s ease forwards;
     animation-delay: 0.2s;
     animation-fill-mode: both;
 }
