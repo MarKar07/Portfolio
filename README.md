@@ -1,6 +1,6 @@
 # Kari Markus - Portfolio
 
-Portfolio-sivusto ICT-opiskelijalle ja WordPress-kehittäjälle.
+Portfolio-sivusto ICT-opiskelijalle.
 
 ## 🌐 Live Demo
 [Katso sivusto täältä](https://markar07.github.io/portfolio/)
