@@ -37,10 +37,53 @@ window.addEventListener('scroll', () => {
 });
 
 // ================================
-// FORM SUBMISSION - FORMSPREE HOITAA
+// CONTACT INFO REVEAL (BOT PROTECTION)
 // ================================
-// Ei tarvita JavaScript-käsittelyä kun käytetään Formspreeta
-// Lomake lähettää automaattisesti kun submit-nappia painetaan
+document.addEventListener('DOMContentLoaded', () => {
+    // Koodatut yhteystiedot (vaihda omat tietosi)
+    const contactData = {
+        email: 'a2FyaS5tYXJrdXNAZXhhbXBsZS5jb20=', // base64: kari.markus@example.com
+        phone: 'KzM1OCA0MCA1NjcgODkwMQ==' // base64: +358 40 567 8901
+    };
+    
+    // Lisää click-eventit yhteystietojen näyttämiseen
+    document.querySelectorAll('.contact-reveal').forEach(item => {
+        item.addEventListener('click', function() {
+            const contactType = this.getAttribute('data-contact');
+            const hiddenSpan = this.querySelector('.contact-hidden');
+            const shownSpan = this.querySelector('.contact-shown');
+            
+            if (hiddenSpan.style.display !== 'none') {
+                // Dekoodaa ja näytä yhteystieto
+                const decodedContact = atob(contactData[contactType]);
+                shownSpan.textContent = decodedContact;
+                
+                // Vaihda näkyvyys
+                hiddenSpan.style.display = 'none';
+                shownSpan.style.display = 'inline';
+                
+                // Lisää kopioi-toiminnallisuus
+                shownSpan.style.cursor = 'pointer';
+                shownSpan.title = 'Klikkaa kopioidaksesi';
+                
+                shownSpan.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(decodedContact).then(() => {
+                        // Näytä lyhyt feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Kopioitu!';
+                        this.style.color = 'var(--accent-color)';
+                        
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.color = 'var(--text-primary)';
+                        }, 1500);
+                    });
+                });
+            }
+        });
+    });
+});
 
 // ================================
 // MOBILE MENU FUNCTIONALITY
@@ -233,7 +276,7 @@ revealElements.forEach(element => {
 console.log(`
 🚀 Portfolio by Kari Markus
 📧 Contact: s4maka07@students.osao.fi
-💼 Avoin mahdollisuuksille!
+💼 Open for opportunities!
 
 Built with: HTML5, CSS3, Vanilla JavaScript
 `);
