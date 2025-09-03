@@ -3,7 +3,7 @@
 Portfolio-sivusto ICT-opiskelijalle.
 
 ## 🌐 Live Demo
-[Katso sivusto täältä](https://markar07.github.io/portfolio/)
+[Katso sivusto täältä] (https://markar07.github.io/portfolio/)
 
 ## 🛠️ Teknologiat
 - HTML5
