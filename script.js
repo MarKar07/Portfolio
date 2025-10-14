@@ -343,3 +343,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ================================
+// PROJECT CARD READ MORE FUNCTIONALITY
+// ================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Hae kaikki "Lue lisää" -napit
+    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+    
+    readMoreBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const description = document.getElementById(targetId);
+            
+            if (description) {
+                if (description.classList.contains('collapsed')) {
+                    // Avaa
+                    description.classList.remove('collapsed');
+                    description.classList.add('expanded');
+                    this.classList.add('expanded');
+                    
+                    // Vaihda tekstiä
+                    const currentLang = localStorage.getItem('selectedLanguage') || 'fi';
+                    if (currentLang === 'en') {
+                        this.innerHTML = 'Read less <i class="fas fa-chevron-down"></i>';
+                    } else {
+                        this.innerHTML = 'Lue vähemmän <i class="fas fa-chevron-down"></i>';
+                    }
+                } else {
+                    // Sulje
+                    description.classList.remove('expanded');
+                    description.classList.add('collapsed');
+                    this.classList.remove('expanded');
+                    
+                    // Vaihda tekstiä
+                    const currentLang = localStorage.getItem('selectedLanguage') || 'fi';
+                    if (currentLang === 'en') {
+                        this.innerHTML = 'Read more <i class="fas fa-chevron-down"></i>';
+                    } else {
+                        this.innerHTML = 'Lue lisää <i class="fas fa-chevron-down"></i>';
+                    }
+                    
+                    // Scrollaa kortin alkuun
+                    this.closest('.project-card').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest' 
+                    });
+                }
+            }
+        });
+    });
+});

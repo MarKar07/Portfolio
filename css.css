@@ -717,3 +717,48 @@ footer {
         font-size: 0.7rem;
     }
 }
+
+/* ================================
+   PROJECT CARD EXPANSION
+   ================================ */
+.project-content p {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.project-content p.collapsed {
+    max-height: 120px; /* Näyttää vain 4-5 riviä */
+}
+
+.project-content p.expanded {
+    max-height: 2000px; /* Riittävästi tilaa koko tekstille */
+}
+
+.read-more-btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.read-more-btn:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.read-more-btn i {
+    margin-left: 0.3rem;
+    transition: transform 0.3s ease;
+}
+
+.read-more-btn.expanded i {
+    transform: rotate(180deg);
+}
