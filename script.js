@@ -37,55 +37,6 @@ window.addEventListener('scroll', () => {
 });
 
 // ================================
-// CONTACT INFO REVEAL (BOT PROTECTION)
-// ================================
-document.addEventListener('DOMContentLoaded', () => {
-    // Koodatut yhteystiedot (vaihda omat tietosi)
-    const contactData = {
-        email: 'a2FyaS5tYXJrdXNAZXhhbXBsZS5jb20=', // base64: kari.markus@example.com
-        phone: 'KzM1OCA0MCA1NjcgODkwMQ==' // base64: +358 40 567 8901
-    };
-    
-    // Lisää click-eventit yhteystietojen näyttämiseen
-    document.querySelectorAll('.contact-reveal').forEach(item => {
-        item.addEventListener('click', function() {
-            const contactType = this.getAttribute('data-contact');
-            const hiddenSpan = this.querySelector('.contact-hidden');
-            const shownSpan = this.querySelector('.contact-shown');
-            
-            if (hiddenSpan.style.display !== 'none') {
-                // Dekoodaa ja näytä yhteystieto
-                const decodedContact = atob(contactData[contactType]);
-                shownSpan.textContent = decodedContact;
-                
-                // Vaihda näkyvyys
-                hiddenSpan.style.display = 'none';
-                shownSpan.style.display = 'inline';
-                
-                // Lisää kopioi-toiminnallisuus
-                shownSpan.style.cursor = 'pointer';
-                shownSpan.title = 'Klikkaa kopioidaksesi';
-                
-                shownSpan.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(decodedContact).then(() => {
-                        // Näytä lyhyt feedback
-                        const originalText = this.textContent;
-                        this.textContent = 'Kopioitu!';
-                        this.style.color = 'var(--accent-color)';
-                        
-                        setTimeout(() => {
-                            this.textContent = originalText;
-                            this.style.color = 'var(--text-primary)';
-                        }, 1500);
-                    });
-                });
-            }
-        });
-    });
-});
-
-// ================================
 // MOBILE MENU FUNCTIONALITY
 // ================================
 document.addEventListener('DOMContentLoaded', function() {
@@ -98,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
@@ -109,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 // ================================
 // ANIMATE ELEMENTS ON SCROLL
 // ================================
@@ -126,7 +77,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe skill cards and project cards
 document.querySelectorAll('.skill-card, .project-card').forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(30px)';
@@ -140,10 +90,9 @@ document.querySelectorAll('.skill-card, .project-card').forEach(card => {
 function animateHeroImage() {
     const heroImage = document.querySelector('.hero-image img');
     if (heroImage) {
-        // Viive animaatiolle jotta sivu ehtii latautua
         setTimeout(() => {
             heroImage.classList.add('animate-in');
-        }, 500); // 0.5 sekunnin viive
+        }, 500);
     }
 }
 
@@ -166,17 +115,15 @@ function typeWriter(element, text, speed = 100) {
 
 // Initialize animations when page loads
 window.addEventListener('load', () => {
-    // Käynnistä kuvan animaatio
     animateHeroImage();
     
-    // Käynnistä typewriter-efekti (hieman myöhemmin)
     setTimeout(() => {
         const heroTitle = document.querySelector('.hero h1');
         if (heroTitle) {
             const originalText = heroTitle.textContent;
             typeWriter(heroTitle, originalText, 100);
         }
-    }, 800); // Aloita kun kuva on jo liikkeessä
+    }, 800);
 });
 
 // ================================
@@ -185,26 +132,11 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const footer = document.querySelector('footer p');
     const currentYear = new Date().getFullYear();
-    footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
-});
-
-// ================================
-// DARK/LIGHT MODE TOGGLE (OPTIONAL)
-// ================================
-function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('light-mode');
-    
-    // Save preference to localStorage
-    const isLightMode = body.classList.contains('light-mode');
-    localStorage.setItem('lightMode', isLightMode);
-}
-
-// Load saved theme preference
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('lightMode');
-    if (savedTheme === 'true') {
-        document.body.classList.add('light-mode');
+    const currentLang = localStorage.getItem('selectedLanguage') || 'fi';
+    if (currentLang === 'en') {
+        footer.innerHTML = `&copy; ${currentYear} Kari Markus. All rights reserved.`;
+    } else {
+        footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
     }
 });
 
@@ -213,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ================================
 document.querySelectorAll('.skill-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
+        this.style.transform = 'translateY(-8px) scale(1.02)';
     });
     
     card.addEventListener('mouseleave', function() {
@@ -222,53 +154,167 @@ document.querySelectorAll('.skill-card').forEach(card => {
 });
 
 // ================================
-// PROJECT CARD INTERACTIONS
+// SIMPLE LANGUAGE SWITCHER
 // ================================
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        const img = this.querySelector('img');
-        if (img) {
-            img.style.transform = 'scale(1.1)';
-        }
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        const img = this.querySelector('img');
-        if (img) {
-            img.style.transform = 'scale(1)';
-        }
-    });
-});
+let currentLang = 'fi';
+const originalTexts = new Map();
 
-// ================================
-// PARALLAX EFFECT FOR HERO SECTION
-// ================================
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroImage = document.querySelector('.hero-image img');
-    
-    if (heroImage) {
-        heroImage.style.transform = `translateY(${scrolled * 0.02}px)`;
+function saveOriginalTexts() {
+    document.querySelectorAll('[data-en]').forEach(element => {
+        originalTexts.set(element, element.textContent);
+    });
+}
+
+function switchLanguage(lang) {
+    if (lang === 'en') {
+        document.querySelectorAll('[data-en]').forEach(element => {
+            element.textContent = element.getAttribute('data-en');
+        });
+    } else {
+        document.querySelectorAll('[data-en]').forEach(element => {
+            element.textContent = originalTexts.get(element);
+        });
     }
+    
+    currentLang = lang;
+    localStorage.setItem('selectedLanguage', lang);
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+
+    // Update footer year text
+    const footer = document.querySelector('footer p');
+    const currentYear = new Date().getFullYear();
+    if (lang === 'en') {
+        footer.innerHTML = `&copy; ${currentYear} Kari Markus. All rights reserved.`;
+    } else {
+        footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    saveOriginalTexts();
+    
+    const savedLang = localStorage.getItem('selectedLanguage') || 'fi';
+    if (savedLang === 'en') {
+        switchLanguage('en');
+    }
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
 });
 
 // ================================
-// SMOOTH REVEAL ANIMATIONS
+// PROJECT MODAL FUNCTIONALITY
 // ================================
-const revealElements = document.querySelectorAll('.section-title, .hero-content, .contact-info');
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalTech = document.getElementById('modal-tech');
+    const modalLinks = document.getElementById('modal-links');
+    const modalClose = document.querySelector('.modal-close');
 
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
+    // Get current language
+    function getLang() {
+        return localStorage.getItem('selectedLanguage') || 'fi';
+    }
+
+    // Open modal
+    function openModal(card) {
+        const lang = getLang();
+        
+        // Get title
+        const title = lang === 'en' ? card.dataset.titleEn : card.dataset.title;
+        modalTitle.textContent = title;
+        
+        // Get description (convert \n\n to line breaks)
+        const desc = lang === 'en' ? card.dataset.descEn : card.dataset.desc;
+        modalDesc.innerHTML = desc.replace(/\n\n/g, '<br><br>');
+        
+        // Get technologies
+        const tech = card.dataset.tech;
+        const techLabel = lang === 'en' ? 'Technologies:' : 'Teknologiat:';
+        modalTech.innerHTML = `<strong>${techLabel}</strong> ${tech}`;
+        
+        // Get links
+        modalLinks.innerHTML = '';
+        
+        if (card.dataset.link1) {
+            const link1Text = lang === 'en' ? card.dataset.link1TextEn : card.dataset.link1Text;
+            const link1 = document.createElement('a');
+            link1.href = card.dataset.link1;
+            link1.className = 'btn';
+            link1.target = '_blank';
+            link1.rel = 'noopener noreferrer';
+            link1.textContent = link1Text;
+            modalLinks.appendChild(link1);
+        }
+        
+        if (card.dataset.link2) {
+            const link2Text = lang === 'en' ? card.dataset.link2TextEn : card.dataset.link2Text;
+            const link2 = document.createElement('a');
+            link2.href = card.dataset.link2;
+            link2.className = 'btn btn-secondary';
+            link2.target = '_blank';
+            link2.rel = 'noopener noreferrer';
+            link2.textContent = link2Text;
+            modalLinks.appendChild(link2);
+        }
+        
+        // Show modal with animation
+        modal.style.display = 'flex';
+        // Trigger reflow for animation
+        modal.offsetHeight;
+        modal.classList.add('active');
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 200);
+        document.body.style.overflow = '';
+    }
+
+    // Event listeners for project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+        // Click on card or read more button
+        card.addEventListener('click', function(e) {
+            // Don't open modal if clicking on external link inside card
+            if (e.target.closest('a')) return;
+            openModal(this);
+        });
+    });
+
+    // Close button
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+    }
+
+    // Click outside modal content
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
         }
     });
-}, {
-    threshold: 0.15
-});
 
-revealElements.forEach(element => {
-    revealObserver.observe(element);
+    // ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
 });
 
 // ================================
@@ -288,109 +334,4 @@ Built with: HTML5, CSS3, Vanilla JavaScript
 window.addEventListener('load', () => {
     const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
     console.log(`Page loaded in ${loadTime}ms`);
-});
-
-// ================================
-// SIMPLE LANGUAGE SWITCHER
-// ================================
-let currentLang = 'fi';
-const originalTexts = new Map();
-
-// Tallenna alkuperäiset tekstit
-function saveOriginalTexts() {
-    document.querySelectorAll('[data-en]').forEach(element => {
-        originalTexts.set(element, element.textContent);
-    });
-}
-
-// Vaihda kieli
-function switchLanguage(lang) {
-    if (lang === 'en') {
-        document.querySelectorAll('[data-en]').forEach(element => {
-            element.textContent = element.getAttribute('data-en');
-        });
-    } else {
-        document.querySelectorAll('[data-en]').forEach(element => {
-            element.textContent = originalTexts.get(element);
-        });
-    }
-    
-    currentLang = lang;
-    localStorage.setItem('selectedLanguage', lang);
-    
-    // Päivitä napit
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-}
-
-// Alusta kielenvaihtaja
-document.addEventListener('DOMContentLoaded', function() {
-    saveOriginalTexts();
-    
-    // Lataa tallennettu kieli
-    const savedLang = localStorage.getItem('selectedLanguage') || 'fi';
-    if (savedLang === 'en') {
-        switchLanguage('en');
-    }
-    
-    // Lisää click-eventit
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const lang = this.getAttribute('data-lang');
-            switchLanguage(lang);
-        });
-    });
-});
-
-// ================================
-// PROJECT CARD READ MORE FUNCTIONALITY
-// ================================
-document.addEventListener('DOMContentLoaded', function() {
-    // Hae kaikki "Lue lisää" -napit
-    const readMoreBtns = document.querySelectorAll('.read-more-btn');
-    
-    readMoreBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const description = document.getElementById(targetId);
-            
-            if (description) {
-                if (description.classList.contains('collapsed')) {
-                    // Avaa
-                    description.classList.remove('collapsed');
-                    description.classList.add('expanded');
-                    this.classList.add('expanded');
-                    
-                    // Vaihda tekstiä
-                    const currentLang = localStorage.getItem('selectedLanguage') || 'fi';
-                    if (currentLang === 'en') {
-                        this.innerHTML = 'Read less <i class="fas fa-chevron-down"></i>';
-                    } else {
-                        this.innerHTML = 'Lue vähemmän <i class="fas fa-chevron-down"></i>';
-                    }
-                } else {
-                    // Sulje
-                    description.classList.remove('expanded');
-                    description.classList.add('collapsed');
-                    this.classList.remove('expanded');
-                    
-                    // Vaihda tekstiä
-                    const currentLang = localStorage.getItem('selectedLanguage') || 'fi';
-                    if (currentLang === 'en') {
-                        this.innerHTML = 'Read more <i class="fas fa-chevron-down"></i>';
-                    } else {
-                        this.innerHTML = 'Lue lisää <i class="fas fa-chevron-down"></i>';
-                    }
-                    
-                    // Scrollaa kortin alkuun
-                    this.closest('.project-card').scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'nearest' 
-                    });
-                }
-            }
-        });
-    });
 });
