@@ -287,7 +287,7 @@ nav {
 }
 
 /* ================================
-   PROJECTS SECTION
+   PROJECTS SECTION - MASONRY GRID
    ================================ */
 .projects {
     padding: 4rem 1.5rem;
@@ -301,55 +301,122 @@ nav {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1rem;
 }
 
 .project-card {
     background: var(--bg-secondary);
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border-color);
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);
 }
 
+/* Korttien koot */
+.project-card.card-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.project-card.card-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.project-card.card-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* Kortin kuva */
 .project-card img {
     width: 100%;
-    height: 160px;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .project-card:hover img {
     transform: scale(1.05);
 }
 
+/* Kortin sisältö - overlay */
 .project-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: 1.2rem;
-    flex-grow: 1;
+    background: linear-gradient(transparent, rgba(22, 33, 62, 0.95) 30%);
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    min-height: 50%;
+    z-index: 2;
+}
+
+.project-card.card-large .project-content,
+.project-card.card-tall .project-content {
+    min-height: 40%;
+}
+
+.project-card.card-wide .project-content {
+    min-height: 60%;
+}
+
+/* Project tag */
+.project-tag {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    align-self: flex-start;
 }
 
 .project-content h3 {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
     color: var(--text-primary);
     font-size: 1rem;
 }
 
+.project-card.card-large .project-content h3 {
+    font-size: 1.3rem;
+}
+
 .project-summary {
     color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-card.card-large .project-summary {
+    -webkit-line-clamp: 3;
     font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    flex-grow: 1;
 }
 
 .read-more-btn {
@@ -364,7 +431,7 @@ nav {
     border: none;
     padding: 0;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     align-self: flex-start;
 }
 
@@ -374,6 +441,7 @@ nav {
 
 .read-more-btn i {
     transition: transform 0.3s ease;
+    font-size: 0.75rem;
 }
 
 .read-more-btn:hover i {
@@ -381,28 +449,113 @@ nav {
 }
 
 /* ================================
-   PROJECT ICON HEADER
+   PROJECT ICON HEADER (for cards without images)
    ================================ */
 .project-icon-header {
     width: 100%;
-    height: 160px;
+    height: 100%;
     background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid var(--border-color);
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .project-icon-header i {
-    font-size: 4.5rem;
+    font-size: 4rem;
     color: var(--accent-color);
-    opacity: 0.9;
+    opacity: 0.7;
     transition: all 0.3s ease;
+}
+
+.project-card.card-large .project-icon-header i {
+    font-size: 6rem;
 }
 
 .project-card:hover .project-icon-header i {
     transform: scale(1.1);
-    opacity: 1;
+    opacity: 0.9;
+}
+
+/* ================================
+   WORDPRESS STATS HEADER (D2 style)
+   ================================ */
+.project-stats-header {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.project-stats-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.stats-logo {
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    opacity: 0.5;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .stats-logo {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+.stats-display {
+    display: flex;
+    gap: 2rem;
+    z-index: 1;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+}
+
+.stat-highlight .stat-number {
+    color: #22c55e;
+}
+
+/* ================================
+   THUNDERSTORM IMAGE FIX
+   ================================ */
+.project-card.card-tall img {
+    object-position: center 20%;
 }
 
 /* ================================
@@ -410,7 +563,12 @@ nav {
    ================================ */
 .github-stats-card {
     cursor: default;
-    grid-column: 2 / 4;
+}
+
+.github-stats-card .project-content {
+    min-height: 60%;
+    justify-content: flex-start;
+    padding-top: 1rem;
 }
 
 .github-stats-card:hover {
@@ -418,27 +576,27 @@ nav {
 }
 
 .github-stats {
-    margin-bottom: 1rem;
+    margin: 0.6rem 0;
 }
 
 .github-stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
+    gap: 0.4rem;
 }
 
 .github-stat-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
+    gap: 0.4rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
 }
 
 .github-stat-item i {
     color: var(--accent-color);
-    width: 16px;
-    font-size: 0.9rem;
+    width: 14px;
+    font-size: 0.8rem;
 }
 
 .github-stat-item span {
@@ -450,54 +608,57 @@ nav {
     grid-column: 1 / -1;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--border-color);
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+    flex-wrap: wrap;
 }
 
 .github-languages-title {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
 }
 
 .github-languages-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.25rem;
 }
 
 .github-lang-tag {
     background: var(--bg-primary);
     color: var(--accent-color);
-    padding: 0.2rem 0.5rem;
+    padding: 0.1rem 0.35rem;
     border-radius: 10px;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     border: 1px solid var(--border-color);
 }
 
 .github-loading {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 .github-error {
     color: var(--accent-hover);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 .github-profile-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.4rem;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    align-self: flex-start;
 }
 
 .github-profile-btn i {
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 
 /* Mobiilissa GitHub-kortti täysleveä */
@@ -858,6 +1019,28 @@ footer {
 /* ================================
    RESPONSIVE DESIGN
    ================================ */
+@media screen and (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
+    }
+    
+    .project-card.card-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    
+    .project-card.card-tall {
+        grid-column: span 1;
+        grid-row: span 2;
+    }
+    
+    .project-card.card-wide {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+}
+
 @media screen and (max-width: 768px) {
     html {
         font-size: 14px;
@@ -916,8 +1099,48 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 
+    /* Mobiili: kaikki kortit samaa kokoa, pystyasettelu */
     .projects-grid {
         grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    
+    .project-card,
+    .project-card.card-large,
+    .project-card.card-tall,
+    .project-card.card-wide {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: auto;
+    }
+    
+    .project-card img {
+        height: 180px;
+        position: relative;
+    }
+    
+    .project-icon-header {
+        height: 140px;
+        position: relative;
+    }
+    
+    .project-content {
+        position: relative;
+        min-height: auto;
+        background: var(--bg-secondary);
+        padding: 1rem;
+    }
+    
+    .project-icon-header i {
+        font-size: 3.5rem;
+    }
+    
+    .project-card.card-large .project-icon-header i {
+        font-size: 3.5rem;
+    }
+    
+    .project-card.card-large .project-content h3 {
+        font-size: 1rem;
     }
 
     .video-container iframe {
