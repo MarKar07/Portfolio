@@ -57,6 +57,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
+        // Sulje menu kun klikataan muualle
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                // Jos klikkaus ei ole menun tai menu-napin sisällä
+                if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    navLinks.classList.remove('mobile-active');
+                    mobileMenu.classList.remove('active');
+                }
+            }
+        });
     }
 });
 
