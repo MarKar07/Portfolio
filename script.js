@@ -192,6 +192,11 @@ function switchLanguage(lang) {
     } else {
         footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
     }
+    
+    // Päivitä GitHub-tilastot uudella kielellä
+    if (typeof fetchGitHubStats === 'function') {
+        fetchGitHubStats();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -293,6 +298,8 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function(e) {
             // Don't open modal if clicking on external link inside card
             if (e.target.closest('a')) return;
+            // Don't open modal for GitHub stats card
+            if (this.classList.contains('github-stats-card')) return;
             openModal(this);
         });
     });
@@ -316,6 +323,112 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// ================================
+// GITHUB STATS API
+// ================================
+async function fetchGitHubStats() {
+    const statsContainer = document.getElementById('github-stats');
+    const githubCard = document.getElementById('github-stats-card');
+    
+    if (!statsContainer) return;
+    
+    const lang = localStorage.getItem('selectedLanguage') || 'fi';
+    
+    try {
+        // Hae käyttäjätiedot
+        const userResponse = await fetch('https://api.github.com/users/MarKar07');
+        if (!userResponse.ok) throw new Error('API error');
+        const userData = await userResponse.json();
+        
+        // Hae repositoriot kielitilastoja varten
+        const reposResponse = await fetch('https://api.github.com/users/MarKar07/repos?per_page=100&sort=updated');
+        if (!reposResponse.ok) throw new Error('API error');
+        const reposData = await reposResponse.json();
+        
+        // Laske kielet
+        const languages = {};
+        reposData.forEach(repo => {
+            if (repo.language) {
+                languages[repo.language] = (languages[repo.language] || 0) + 1;
+            }
+        });
+        
+        // Järjestä kielet suosituimmuuden mukaan
+        const sortedLanguages = Object.entries(languages)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([lang]) => lang);
+        
+        // Laske viimeisin päivitys
+        const lastUpdate = new Date(userData.updated_at);
+        const now = new Date();
+        const diffDays = Math.floor((now - lastUpdate) / (1000 * 60 * 60 * 24));
+        
+        let lastUpdateText;
+        if (lang === 'en') {
+            if (diffDays === 0) lastUpdateText = 'Today';
+            else if (diffDays === 1) lastUpdateText = 'Yesterday';
+            else lastUpdateText = `${diffDays} days ago`;
+        } else {
+            if (diffDays === 0) lastUpdateText = 'Tänään';
+            else if (diffDays === 1) lastUpdateText = 'Eilen';
+            else lastUpdateText = `${diffDays} päivää sitten`;
+        }
+        
+        // Luo HTML (horisontaalinen layout)
+        const reposLabel = lang === 'en' ? 'Repos' : 'Repot';
+        const followersLabel = lang === 'en' ? 'Followers' : 'Seuraajat';
+        const followingLabel = lang === 'en' ? 'Following' : 'Seurataan';
+        const updatedLabel = lang === 'en' ? 'Active' : 'Aktiivinen';
+        const languagesLabel = lang === 'en' ? 'Languages:' : 'Kielet:';
+        
+        statsContainer.innerHTML = `
+            <div class="github-stats-grid">
+                <div class="github-stat-item">
+                    <i class="fas fa-folder"></i>
+                    ${reposLabel}: <span>${userData.public_repos}</span>
+                </div>
+                <div class="github-stat-item">
+                    <i class="fas fa-users"></i>
+                    ${followersLabel}: <span>${userData.followers}</span>
+                </div>
+                <div class="github-stat-item">
+                    <i class="fas fa-user-plus"></i>
+                    ${followingLabel}: <span>${userData.following}</span>
+                </div>
+                <div class="github-stat-item">
+                    <i class="fas fa-clock"></i>
+                    ${updatedLabel}: <span>${lastUpdateText}</span>
+                </div>
+                <div class="github-languages">
+                    <span class="github-languages-title">${languagesLabel}</span>
+                    <div class="github-languages-list">
+                        ${sortedLanguages.map(lang => `<span class="github-lang-tag">${lang}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Poista modal-klikkaus GitHub-kortilta
+        if (githubCard) {
+            githubCard.style.cursor = 'default';
+        }
+        
+    } catch (error) {
+        console.error('GitHub API error:', error);
+        const errorText = lang === 'en' 
+            ? 'Could not load stats' 
+            : 'Tilastoja ei voitu ladata';
+        statsContainer.innerHTML = `<p class="github-error"><i class="fas fa-exclamation-circle"></i> ${errorText}</p>`;
+    }
+}
+
+// Kutsu GitHub-funktio sivun latautuessa
+document.addEventListener('DOMContentLoaded', fetchGitHubStats);
+
+// Päivitä GitHub-tilastot kun kieli vaihtuu
+const originalSwitchLanguage = typeof switchLanguage === 'function' ? switchLanguage : null;
 
 // ================================
 // CONSOLE MESSAGE FOR DEVELOPERS
