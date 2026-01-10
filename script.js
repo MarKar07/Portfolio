@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Sulje menu kun klikataan muualle
         document.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
-                // Jos klikkaus ei ole menun tai menu-napin sisällä
                 if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
                     navLinks.classList.remove('mobile-active');
                     mobileMenu.classList.remove('active');
@@ -181,10 +180,16 @@ function switchLanguage(lang) {
         document.querySelectorAll('[data-en]').forEach(element => {
             element.textContent = element.getAttribute('data-en');
         });
+        // Näytä englanninkielinen teksti, piilota suomenkielinen
+        document.querySelectorAll('.lang-fi').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'block');
     } else {
         document.querySelectorAll('[data-en]').forEach(element => {
             element.textContent = originalTexts.get(element);
         });
+        // Näytä suomenkielinen teksti, piilota englanninkielinen
+        document.querySelectorAll('.lang-fi').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
     }
     
     currentLang = lang;
@@ -286,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show modal with animation
         modal.style.display = 'flex';
-        // Trigger reflow for animation
         modal.offsetHeight;
         modal.classList.add('active');
         
@@ -305,11 +309,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listeners for project cards
     document.querySelectorAll('.project-card').forEach(card => {
-        // Click on card or read more button
         card.addEventListener('click', function(e) {
-            // Don't open modal if clicking on external link inside card
             if (e.target.closest('a')) return;
-            // Don't open modal for GitHub stats card
             if (this.classList.contains('github-stats-card')) return;
             openModal(this);
         });
@@ -347,17 +348,14 @@ async function fetchGitHubStats() {
     const lang = localStorage.getItem('selectedLanguage') || 'fi';
     
     try {
-        // Hae käyttäjätiedot
         const userResponse = await fetch('https://api.github.com/users/MarKar07');
         if (!userResponse.ok) throw new Error('API error');
         const userData = await userResponse.json();
         
-        // Hae repositoriot kielitilastoja varten
         const reposResponse = await fetch('https://api.github.com/users/MarKar07/repos?per_page=100&sort=updated');
         if (!reposResponse.ok) throw new Error('API error');
         const reposData = await reposResponse.json();
         
-        // Laske kielet
         const languages = {};
         reposData.forEach(repo => {
             if (repo.language) {
@@ -365,13 +363,11 @@ async function fetchGitHubStats() {
             }
         });
         
-        // Järjestä kielet suosituimmuuden mukaan
         const sortedLanguages = Object.entries(languages)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 5)
             .map(([lang]) => lang);
         
-        // Laske viimeisin päivitys
         const lastUpdate = new Date(userData.updated_at);
         const now = new Date();
         const diffDays = Math.floor((now - lastUpdate) / (1000 * 60 * 60 * 24));
@@ -387,7 +383,6 @@ async function fetchGitHubStats() {
             else lastUpdateText = `${diffDays} päivää sitten`;
         }
         
-        // Luo HTML (horisontaalinen layout)
         const reposLabel = lang === 'en' ? 'Repos' : 'Repot';
         const followersLabel = lang === 'en' ? 'Followers' : 'Seuraajat';
         const followingLabel = lang === 'en' ? 'Following' : 'Seurataan';
@@ -421,7 +416,6 @@ async function fetchGitHubStats() {
             </div>
         `;
         
-        // Poista modal-klikkaus GitHub-kortilta
         if (githubCard) {
             githubCard.style.cursor = 'default';
         }
@@ -435,11 +429,7 @@ async function fetchGitHubStats() {
     }
 }
 
-// Kutsu GitHub-funktio sivun latautuessa
 document.addEventListener('DOMContentLoaded', fetchGitHubStats);
-
-// Päivitä GitHub-tilastot kun kieli vaihtuu
-const originalSwitchLanguage = typeof switchLanguage === 'function' ? switchLanguage : null;
 
 // ================================
 // CONSOLE MESSAGE FOR DEVELOPERS

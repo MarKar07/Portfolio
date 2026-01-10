@@ -140,14 +140,14 @@ nav {
 }
 
 .hero h2 {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text-secondary);
     margin-bottom: 1rem;
     font-weight: 400;
 }
 
 .hero p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     line-height: 1.6;
     margin-bottom: 1rem;
     color: var(--text-secondary);
