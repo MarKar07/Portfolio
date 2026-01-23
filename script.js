@@ -71,30 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ================================
-// ANIMATE ELEMENTS ON SCROLL
-// ================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.skill-card, .project-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// ================================
 // HERO IMAGE ANIMATION
 // ================================
 function animateHeroImage() {
@@ -141,30 +117,19 @@ window.addEventListener('load', () => {
 // ================================
 document.addEventListener('DOMContentLoaded', () => {
     const footer = document.querySelector('footer p');
-    const currentYear = new Date().getFullYear();
-    const currentLang = localStorage.getItem('selectedLanguage') || 'fi';
-    if (currentLang === 'en') {
-        footer.innerHTML = `&copy; ${currentYear} Kari Markus. All rights reserved.`;
-    } else {
-        footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
+    if (footer) {
+        const currentYear = new Date().getFullYear();
+        const currentLang = localStorage.getItem('selectedLanguage') || 'fi';
+        if (currentLang === 'en') {
+            footer.innerHTML = `&copy; ${currentYear} Kari Markus. All rights reserved.`;
+        } else {
+            footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
+        }
     }
 });
 
 // ================================
-// ENHANCED SKILL CARD INTERACTIONS
-// ================================
-document.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// ================================
-// SIMPLE LANGUAGE SWITCHER
+// LANGUAGE SWITCHER
 // ================================
 let currentLang = 'fi';
 const originalTexts = new Map();
@@ -180,14 +145,12 @@ function switchLanguage(lang) {
         document.querySelectorAll('[data-en]').forEach(element => {
             element.textContent = element.getAttribute('data-en');
         });
-        // Näytä englanninkielinen teksti, piilota suomenkielinen
         document.querySelectorAll('.lang-fi').forEach(el => el.style.display = 'none');
         document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'block');
     } else {
         document.querySelectorAll('[data-en]').forEach(element => {
             element.textContent = originalTexts.get(element);
         });
-        // Näytä suomenkielinen teksti, piilota englanninkielinen
         document.querySelectorAll('.lang-fi').forEach(el => el.style.display = 'block');
         document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
     }
@@ -200,19 +163,19 @@ function switchLanguage(lang) {
     });
     document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
 
-    // Update footer year text
+    // Update footer
     const footer = document.querySelector('footer p');
-    const currentYear = new Date().getFullYear();
-    if (lang === 'en') {
-        footer.innerHTML = `&copy; ${currentYear} Kari Markus. All rights reserved.`;
-    } else {
-        footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
+    if (footer) {
+        const currentYear = new Date().getFullYear();
+        if (lang === 'en') {
+            footer.innerHTML = `&copy; ${currentYear} Kari Markus. All rights reserved.`;
+        } else {
+            footer.innerHTML = `&copy; ${currentYear} Kari Markus. Kaikki oikeudet pidätetään.`;
+        }
     }
     
-    // Päivitä GitHub-tilastot uudella kielellä
-    if (typeof fetchGitHubStats === 'function') {
-        fetchGitHubStats();
-    }
+    // Ilmoita React-komponentille kielenvaihto
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: lang }));
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -232,206 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ================================
-// PROJECT MODAL FUNCTIONALITY
-// ================================
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('project-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const modalTech = document.getElementById('modal-tech');
-    const modalLinks = document.getElementById('modal-links');
-    const modalClose = document.querySelector('.modal-close');
-
-    // Get current language
-    function getLang() {
-        return localStorage.getItem('selectedLanguage') || 'fi';
-    }
-
-    // Open modal
-    function openModal(card) {
-        const lang = getLang();
-        
-        // Get title
-        const title = lang === 'en' ? card.dataset.titleEn : card.dataset.title;
-        modalTitle.textContent = title;
-        
-        // Get description (convert \n\n to line breaks)
-        const desc = lang === 'en' ? card.dataset.descEn : card.dataset.desc;
-        modalDesc.innerHTML = desc.replace(/\n\n/g, '<br><br>');
-        
-        // Get technologies
-        const tech = card.dataset.tech;
-        const techLabel = lang === 'en' ? 'Technologies:' : 'Teknologiat:';
-        modalTech.innerHTML = `<strong>${techLabel}</strong> ${tech}`;
-        
-        // Get links
-        modalLinks.innerHTML = '';
-        
-        if (card.dataset.link1) {
-            const link1Text = lang === 'en' ? card.dataset.link1TextEn : card.dataset.link1Text;
-            const link1 = document.createElement('a');
-            link1.href = card.dataset.link1;
-            link1.className = 'btn';
-            link1.target = '_blank';
-            link1.rel = 'noopener noreferrer';
-            link1.textContent = link1Text;
-            modalLinks.appendChild(link1);
-        }
-        
-        if (card.dataset.link2) {
-            const link2Text = lang === 'en' ? card.dataset.link2TextEn : card.dataset.link2Text;
-            const link2 = document.createElement('a');
-            link2.href = card.dataset.link2;
-            link2.className = 'btn btn-secondary';
-            link2.target = '_blank';
-            link2.rel = 'noopener noreferrer';
-            link2.textContent = link2Text;
-            modalLinks.appendChild(link2);
-        }
-        
-        // Show modal with animation
-        modal.style.display = 'flex';
-        modal.offsetHeight;
-        modal.classList.add('active');
-        
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
-    }
-
-    // Close modal
-    function closeModal() {
-        modal.classList.remove('active');
-        setTimeout(() => {
-            modal.style.display = 'none';
-        }, 200);
-        document.body.style.overflow = '';
-    }
-
-    // Event listeners for project cards
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', function(e) {
-            if (e.target.closest('a')) return;
-            if (this.classList.contains('github-stats-card')) return;
-            openModal(this);
-        });
-    });
-
-    // Close button
-    if (modalClose) {
-        modalClose.addEventListener('click', closeModal);
-    }
-
-    // Click outside modal content
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-
-    // ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-});
-
-// ================================
-// GITHUB STATS API
-// ================================
-async function fetchGitHubStats() {
-    const statsContainer = document.getElementById('github-stats');
-    const githubCard = document.getElementById('github-stats-card');
-    
-    if (!statsContainer) return;
-    
-    const lang = localStorage.getItem('selectedLanguage') || 'fi';
-    
-    try {
-        const userResponse = await fetch('https://api.github.com/users/MarKar07');
-        if (!userResponse.ok) throw new Error('API error');
-        const userData = await userResponse.json();
-        
-        const reposResponse = await fetch('https://api.github.com/users/MarKar07/repos?per_page=100&sort=updated');
-        if (!reposResponse.ok) throw new Error('API error');
-        const reposData = await reposResponse.json();
-        
-        const languages = {};
-        reposData.forEach(repo => {
-            if (repo.language) {
-                languages[repo.language] = (languages[repo.language] || 0) + 1;
-            }
-        });
-        
-        const sortedLanguages = Object.entries(languages)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 5)
-            .map(([lang]) => lang);
-        
-        const lastUpdate = new Date(userData.updated_at);
-        const now = new Date();
-        const diffDays = Math.floor((now - lastUpdate) / (1000 * 60 * 60 * 24));
-        
-        let lastUpdateText;
-        if (lang === 'en') {
-            if (diffDays === 0) lastUpdateText = 'Today';
-            else if (diffDays === 1) lastUpdateText = 'Yesterday';
-            else lastUpdateText = `${diffDays} days ago`;
-        } else {
-            if (diffDays === 0) lastUpdateText = 'Tänään';
-            else if (diffDays === 1) lastUpdateText = 'Eilen';
-            else lastUpdateText = `${diffDays} päivää sitten`;
-        }
-        
-        const reposLabel = lang === 'en' ? 'Repos' : 'Repot';
-        const followersLabel = lang === 'en' ? 'Followers' : 'Seuraajat';
-        const followingLabel = lang === 'en' ? 'Following' : 'Seurataan';
-        const updatedLabel = lang === 'en' ? 'Active' : 'Aktiivinen';
-        const languagesLabel = lang === 'en' ? 'Languages:' : 'Kielet:';
-        
-        statsContainer.innerHTML = `
-            <div class="github-stats-grid">
-                <div class="github-stat-item">
-                    <i class="fas fa-folder"></i>
-                    ${reposLabel}: <span>${userData.public_repos}</span>
-                </div>
-                <div class="github-stat-item">
-                    <i class="fas fa-users"></i>
-                    ${followersLabel}: <span>${userData.followers}</span>
-                </div>
-                <div class="github-stat-item">
-                    <i class="fas fa-user-plus"></i>
-                    ${followingLabel}: <span>${userData.following}</span>
-                </div>
-                <div class="github-stat-item">
-                    <i class="fas fa-clock"></i>
-                    ${updatedLabel}: <span>${lastUpdateText}</span>
-                </div>
-                <div class="github-languages">
-                    <span class="github-languages-title">${languagesLabel}</span>
-                    <div class="github-languages-list">
-                        ${sortedLanguages.map(lang => `<span class="github-lang-tag">${lang}</span>`).join('')}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        if (githubCard) {
-            githubCard.style.cursor = 'default';
-        }
-        
-    } catch (error) {
-        console.error('GitHub API error:', error);
-        const errorText = lang === 'en' 
-            ? 'Could not load stats' 
-            : 'Tilastoja ei voitu ladata';
-        statsContainer.innerHTML = `<p class="github-error"><i class="fas fa-exclamation-circle"></i> ${errorText}</p>`;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', fetchGitHubStats);
-
-// ================================
 // CONSOLE MESSAGE FOR DEVELOPERS
 // ================================
 console.log(`
@@ -439,7 +202,7 @@ console.log(`
 📧 Contact: s4maka07@students.osao.fi
 💼 Open for opportunities!
 
-Built with: HTML5, CSS3, Vanilla JavaScript
+Built with: HTML5, CSS3, JavaScript & React
 `);
 
 // ================================
