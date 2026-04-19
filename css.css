@@ -1600,6 +1600,12 @@ footer {
         left: auto;
         right: auto;
     }
+    .project-card.card-wide .project-content,
+    .project-card.card-large .project-content,
+    .project-card.card-tall .project-content {
+        min-height: auto;
+        justify-content: flex-start;
+    }
 
     .project-content h3,
     .project-card.card-large .project-content h3 {
