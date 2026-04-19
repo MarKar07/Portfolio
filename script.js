@@ -52,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', 'light');
         }
         syncIcon();
+
+        // Pakota mobiiliselain renderöimään uudelleen
+        document.body.style.display = 'none';
+        document.body.offsetHeight;
+        document.body.style.display = '';
     });
 });
 
