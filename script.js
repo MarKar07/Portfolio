@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
 (function () {
     const sections = ['home', 'skills', 'projects', 'contact'];
     const navLinks = document.querySelectorAll('.nav-links a');
+    const sectionNavItems = document.querySelectorAll('.section-nav-item');
 
     function onScroll() {
         let current = 'home';
@@ -198,9 +199,21 @@ document.addEventListener('DOMContentLoaded', function() {
             if (el && window.scrollY >= el.offsetTop - 120) current = id;
         });
 
+        // Jos käyttäjä on lähellä sivun pohjaa, aktivoi viimeinen osio
+        const scrollBottom = window.scrollY + window.innerHeight;
+        const pageHeight = document.documentElement.scrollHeight;
+        if (scrollBottom >= pageHeight - 200) {
+            current = sections[sections.length - 1];
+        }
+
         navLinks.forEach(a => {
             const href = a.getAttribute('href').replace('#', '');
             a.classList.toggle('active', href === current);
+        });
+
+        sectionNavItems.forEach(item => {
+            const section = item.getAttribute('data-section');
+            item.classList.toggle('active', section === current);
         });
     }
 
