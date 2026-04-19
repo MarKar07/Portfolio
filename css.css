@@ -16,6 +16,8 @@
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --card-text: #f0ece4;
     --stat-highlight: #7eb87e;
+    --dot-color: rgba(255, 255, 255, 0.06);
+    --dot-size: 30px;
 }
 
 [data-theme="light"] {
@@ -30,6 +32,7 @@
     --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.07);
     --card-text: #1a1a1a;
     --stat-highlight: #4d8a4d;
+    --dot-color: rgba(0, 0, 0, 0.08);
 }
 
 /* ================================
@@ -53,6 +56,22 @@ body {
     line-height: 1.6;
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+    background-size: var(--dot-size) var(--dot-size);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ================================
@@ -1494,7 +1513,6 @@ footer {
     }
 
     .project-stats-header {
-        height: 150px;
         position: relative;
     }
 
