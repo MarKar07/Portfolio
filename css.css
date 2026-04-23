@@ -668,7 +668,7 @@ nav {
 
 .skill-card-title h3 {
     color: var(--text);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     margin-bottom: 0.25rem;
@@ -676,7 +676,7 @@ nav {
 
 .skill-level {
     color: var(--orange);
-    font-size: 0.68rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.08em;
 }
@@ -690,7 +690,7 @@ nav {
 
 .skill-bullets li {
     color: var(--text-muted);
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     padding-left: 1rem;
     position: relative;
 }
@@ -828,17 +828,17 @@ nav {
 .project-content h3 {
     margin-bottom: 0.35rem;
     color: var(--card-text);
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .project-card.card-large .project-content h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .project-summary {
     color: rgba(240, 236, 228, 0.7);
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 0.6rem;
     display: -webkit-box;
@@ -851,7 +851,7 @@ nav {
 .project-card.card-large .project-summary {
     -webkit-line-clamp: 3;
     line-clamp: 3;
-    font-size: 0.83rem;
+    font-size: 1rem;
 }
 
 .read-more-btn {
@@ -866,7 +866,7 @@ nav {
     border: none;
     padding: 0;
     font-family: inherit;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     letter-spacing: 0.04em;
     align-self: flex-start;
 }
@@ -1071,7 +1071,7 @@ nav {
     color: var(--orange);
     padding: 0.25rem 0.75rem;
     border-radius: 2px;
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     font-weight: 600;
     font-family: "JetBrains Mono", monospace;
     letter-spacing: 0.06em;
@@ -1214,7 +1214,7 @@ nav {
     display: flex;
     align-items: flex-start;
     margin-bottom: 1.4rem;
-    font-size: 0.88rem;
+    font-size: 1.2rem;
     gap: 1rem;
 }
 
@@ -1229,7 +1229,7 @@ nav {
 }
 
 .contact-item i {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     color: var(--orange);
     width: 16px;
     margin-top: 0.15rem;
@@ -1250,7 +1250,7 @@ nav {
 
 .form-group label {
     color: var(--text-muted);
-    font-size: 0.75rem;
+    font-size: 1rem;
     letter-spacing: 0.04em;
     font-weight: 500;
 }
@@ -1264,7 +1264,7 @@ nav {
     border-bottom: 1px solid rgba(255,255,255,0.2);
     color: var(--text);
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     transition: border-color var(--transition);
     outline: none;
 }
