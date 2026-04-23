@@ -1,0 +1,5 @@
+# Claude Code tooling
+.agents/
+.claude/
+.impeccable.md
+skills-lock.json

@@ -21,7 +21,7 @@ window.addEventListener('scroll', () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
-    document.querySelector('.scroll-indicator').style.width = scrolled + '%';
+    document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
 });
 
 // ================================
@@ -227,21 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 // ================================
-// FLIP CARDS
-// ================================
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.flip-card').forEach(card => {
-        card.addEventListener('click', () => card.classList.toggle('flipped'));
-        card.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                card.classList.toggle('flipped');
-            }
-        });
-    });
-});
-
-// ================================
 // PROJECT MODALS
 // ================================
 const projectData = {
@@ -278,8 +263,8 @@ const projectData = {
         titleEn: 'Portfolio Website',
         tech: ['HTML5', 'CSS3', 'JavaScript', 'Formspree'],
         images: ['images/N\u00e4ytt\u00f6kuva 2026-01-10 194258.jpg', 'images/taidot.jpg'],
-        desc: 'Moderni ja responsiivinen henkilökohtainen portfolio-sivusto. Rakennettu HTML5:llä, CSS3:lla ja vanilla JavaScriptillä.\n\nSisältää kaksikielisen tuen (suomi/englanti), interaktiiviset flip-kortit taidoille, masonry-tyylisen projektinäkymän eri kokoisilla korteilla, kuvagallerian modaaleissa sekä live GitHub-tilastot API-integraatiolla.\n\nYhteydenottolomake Formspree-integraatiolla.',
-        descEn: 'Modern and responsive personal portfolio website. Built with HTML5, CSS3, and vanilla JavaScript.\n\nFeatures bilingual support (Finnish/English), interactive flip cards for skills, a masonry-style project grid with varying card sizes, image galleries in modals, and live GitHub stats with API integration.\n\nContact form integrated with Formspree.',
+        desc: 'Moderni ja responsiivinen henkilökohtainen portfolio-sivusto. Rakennettu HTML5:llä, CSS3:lla ja vanilla JavaScriptillä.\n\nSisältää kaksikielisen tuen (suomi/englanti), staattiset taitokortit, masonry-tyylisen projektinäkymän eri kokoisilla korteilla, kuvagallerian modaaleissa sekä live GitHub-tilastot API-integraatiolla.\n\nYhteydenottolomake Formspree-integraatiolla.',
+        descEn: 'Modern and responsive personal portfolio website. Built with HTML5, CSS3, and vanilla JavaScript.\n\nFeatures bilingual support (Finnish/English), static skill cards, a masonry-style project grid with varying card sizes, image galleries in modals, and live GitHub stats with API integration.\n\nContact form integrated with Formspree.',
         live: 'https://markar07.github.io/Portfolio/',
         github: 'https://github.com/MarKar07/Portfolio/'
     },
@@ -436,6 +421,8 @@ Built with: HTML5, CSS3, JavaScript
 // PERFORMANCE MONITORING
 // ================================
 window.addEventListener('load', () => {
-    const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
-    console.log('Page loaded in ' + loadTime + 'ms');
+    const [entry] = performance.getEntriesByType('navigation');
+    if (entry) {
+        console.log('Page loaded in ' + Math.round(entry.domContentLoadedEventEnd) + 'ms');
+    }
 });

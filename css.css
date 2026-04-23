@@ -50,7 +50,7 @@ html {
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    font-family: "Cormorant Garamond", serif;
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
@@ -127,10 +127,9 @@ nav {
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     font-weight: 400;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     transition: color var(--transition);
     position: relative;
     padding-bottom: 4px;
@@ -141,10 +140,12 @@ nav {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 2px;
     background: var(--orange);
-    transition: width var(--transition);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
 }
 
 .nav-links a:hover,
@@ -154,7 +155,7 @@ nav {
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
-    width: 100%;
+    transform: scaleX(1);
 }
 
 /* Orange dot indicator on right side of active link */
@@ -253,6 +254,20 @@ nav {
     height: 1.5px;
     background: var(--text);
     transition: var(--transition);
+    transform-origin: center;
+}
+
+.mobile-menu.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.mobile-menu.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.mobile-menu.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
 }
 
 /* ================================
@@ -327,37 +342,37 @@ nav {
 
 .section-nav-line {
     display: block;
-    width: 40px;
+    width: 60px;
     height: 1px;
     background: var(--text-muted);
     opacity: 0.4;
-    transition: width var(--transition), background var(--transition), opacity var(--transition);
+    transform: scaleX(0.6667);
+    transform-origin: left;
+    transition: transform var(--transition), background var(--transition), opacity var(--transition);
     flex-shrink: 0;
 }
 
 .section-nav-text {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    font-family: "JetBrains Mono", monospace;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity var(--transition);
     white-space: nowrap;
-    border: 0;
 }
 
 .section-nav-item:hover .section-nav-line,
 .section-nav-item.active .section-nav-line {
-    width: 60px;
+    transform: scaleX(1);
     background: var(--orange);
     opacity: 1;
 }
 
 .section-nav-item:hover .section-nav-text,
 .section-nav-item.active .section-nav-text {
-    color: var(--text);
     opacity: 1;
+    color: var(--text);
 }
 
 @media screen and (max-width: 1350px) {
@@ -373,11 +388,13 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 0%;
+    width: 100%;
     height: 2px;
     background: var(--orange);
     z-index: 1001;
-    transition: width 0.2s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
 }
 
 /* ================================
@@ -400,9 +417,8 @@ nav {
 }
 
 .hero-greeting {
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
     color: var(--orange);
     font-weight: 500;
     margin-bottom: 1.2rem;
@@ -421,7 +437,7 @@ nav {
 
 .hero h1 {
     font-family: "Cormorant Garamond", serif;
-    font-size: 5.5rem;
+    font-size: 5.4em;
     font-weight: 700;
     line-height: 1.0;
     letter-spacing: -0.02em;
@@ -433,21 +449,29 @@ nav {
     font-style: normal;
 }
 
-.hero-role {
-    font-size: 0.85rem;
+.hero-role-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    margin-bottom: 0.35rem;
+}
+
+.hero-role-sub {
+    font-size: 1.2rem;
     color: var(--text-muted);
-    font-weight: 400;
     letter-spacing: 0.04em;
+    line-height: 1.6;
     margin-bottom: 2rem;
-    line-height: 1.8;
 }
 
 .hero-bio {
-    font-size: 0.95rem;
-    line-height: 1.9;
+    font-size: 1.125rem;
+    line-height: 1.65;
     color: var(--text-muted);
     margin-bottom: 2.5rem;
-    max-width: 540px;
+    max-width: 58ch;
 }
 
 .hero-bio p + p {
@@ -487,7 +511,7 @@ nav {
     border-radius: 2px;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.9s ease, transform 0.5s ease;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     z-index: 2;
     display: block;
@@ -501,8 +525,8 @@ nav {
 /* Offset shadow rectangle — bottom-right, large offset, clearly visible */
 .hero-image-frame {
     position: absolute;
-    bottom: -90px;
-    right: -90px;
+    bottom: -16px;
+    right: -16px;
     width: 100%;
     height: 100%;
     background: #2a2a2a;
@@ -511,7 +535,7 @@ nav {
 }
 
 [data-theme="light"] .hero-image-frame {
-    background: #d8d8d8;
+    background: #c5c1b8;
 }
 
 /* ================================
@@ -522,23 +546,22 @@ nav {
     align-items: center;
     gap: 0.5rem;
     padding: 12px 28px;
-    background: var(--text);
-    color: var(--bg);
+    background: var(--orange);
+    color: #fff;
     text-decoration: none;
     border-radius: 2px;
     font-weight: 500;
     font-size: 0.82rem;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     transition: all var(--transition);
-    border: 1px solid var(--text);
+    border: 1px solid var(--orange);
     cursor: pointer;
     font-family: inherit;
 }
 
 .btn:hover {
-    background: var(--orange);
-    border-color: var(--orange);
+    background: var(--orange-hover);
+    border-color: var(--orange-hover);
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(224, 90, 40, 0.25);
@@ -546,15 +569,18 @@ nav {
 
 .btn-secondary {
     background: transparent;
-    border: 1px solid var(--border);
+    border: none;
+    border-bottom: 1px solid var(--orange);
+    border-radius: 0;
     color: var(--text-muted);
-    padding: 12px 28px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .btn-secondary:hover {
-    border-color: var(--text);
-    color: var(--text);
     background: transparent;
+    border-bottom-color: var(--orange-hover);
+    color: var(--orange);
     box-shadow: none;
     transform: translateY(-2px);
 }
@@ -563,9 +589,8 @@ nav {
    SECTION SHARED STYLES
    ================================ */
 .section-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 0;
     color: var(--orange);
     font-weight: 500;
     margin-bottom: 0.8rem;
@@ -613,189 +638,73 @@ nav {
     gap: 1.5rem;
 }
 
-/* Flip Cards */
-.flip-card {
-    perspective: 1200px;
-    cursor: pointer;
-}
-
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    display: grid;
-    transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.flip-card.flipped .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-    grid-area: 1 / 1;
-    min-height: 210px;
-    width: 100%;
-    backface-visibility: hidden;
-    border-radius: 3px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: border-color var(--transition);
-}
-
-.flip-card-front {
+/* Skill Cards */
+.skill-card {
     background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1.5rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.flip-card:not(.flipped):hover .flip-card-front {
+.skill-card:hover {
     border-color: var(--border-hover);
     box-shadow: var(--shadow-card);
 }
 
-.flip-card-content {
-    padding: 1.5rem;
-    text-align: center;
-    height: 100%;
+.skill-card-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.3rem;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
 }
 
-.flip-card-front .card-icon {
-    font-size: 1.8rem;
+.skill-icon {
+    font-size: 1.4rem;
     color: var(--orange);
-    margin-bottom: 0.6rem;
-    transition: transform var(--transition);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
 }
 
-.flip-card:not(.flipped):hover .card-icon {
-    transform: scale(1.1);
-}
-
-.flip-card-front h3 {
+.skill-card-title h3 {
     color: var(--text);
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.01em;
-}
-
-.skill-description {
-    color: var(--text-muted);
-    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
 }
 
 .skill-level {
     color: var(--orange);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
-.flip-hint {
-    color: var(--text-faint);
-    font-size: 0.65rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    margin-top: 0.8rem;
-    letter-spacing: 0.04em;
-    transition: color var(--transition);
-}
-
-.flip-card:not(.flipped):hover .flip-hint {
-    color: var(--text-muted);
-}
-
-.flip-card-back {
-    background: var(--bg-card);
-    transform: rotateY(180deg);
-}
-
-.flip-card-back-content {
-    padding: 1.2rem;
-    height: 100%;
+.skill-bullets {
+    list-style: none;
     display: flex;
     flex-direction: column;
-}
-
-.flip-card-back h4 {
-    color: var(--text);
-    margin-bottom: 0.6rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-align: center;
-    letter-spacing: 0.04em;
-}
-
-.back-label {
-    color: var(--orange);
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.projects-list, .skills-list {
-    flex: 1;
-}
-
-.project-item {
-    padding: 0.35rem 0.5rem;
-    margin-bottom: 0.25rem;
-    background: rgba(255,255,255,0.04);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all var(--transition);
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    border: 1px solid transparent;
-}
-
-.project-item:hover {
-    border-color: var(--border-hover);
-    transform: translateX(4px);
-}
-
-.project-item i {
-    color: var(--orange);
-    font-size: 0.65rem;
-}
-
-.project-item span {
-    color: var(--text);
-    font-size: 0.75rem;
-}
-
-.skill-item {
-    padding: 0.25rem 0;
-    display: flex;
-    align-items: center;
     gap: 0.5rem;
+}
+
+.skill-bullets li {
     color: var(--text-muted);
     font-size: 0.78rem;
+    padding-left: 1rem;
+    position: relative;
 }
 
-.skill-item i {
-    color: var(--orange);
-    font-size: 0.62rem;
-}
-
-.back-hint {
-    color: var(--text-faint);
-    font-size: 0.62rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    margin-top: auto;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--border);
-    letter-spacing: 0.04em;
+.skill-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.5;
 }
 
 /* ================================
@@ -910,7 +819,7 @@ nav {
     border-radius: 1px;
     font-size: 0.65rem;
     font-weight: 600;
-    text-transform: uppercase;
+    font-family: "JetBrains Mono", monospace;
     letter-spacing: 0.08em;
     margin-bottom: 0.5rem;
     align-self: flex-start;
@@ -960,7 +869,6 @@ nav {
     font-size: 0.75rem;
     letter-spacing: 0.04em;
     align-self: flex-start;
-    text-transform: uppercase;
 }
 
 .read-more-btn:hover {
@@ -1021,7 +929,7 @@ nav {
 .stat-label {
     font-size: 0.65rem;
     color: var(--text-muted);
-    text-transform: uppercase;
+    font-family: "JetBrains Mono", monospace;
     letter-spacing: 0.12em;
     margin-top: 0.25rem;
 }
@@ -1032,6 +940,12 @@ nav {
 
 .github-stats-card {
     cursor: default;
+}
+
+.github-stats-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
 }
 
 .github-stats-card .project-content {
@@ -1055,7 +969,6 @@ nav {
     transition: all var(--transition);
     margin-top: 0.5rem;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
 }
 
 .github-profile-btn:hover {
@@ -1102,7 +1015,7 @@ nav {
     position: relative;
     border: 1px solid var(--border);
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-    animation: slideUp 0.25s ease;
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modal-close {
@@ -1160,9 +1073,14 @@ nav {
     border-radius: 2px;
     font-size: 0.72rem;
     font-weight: 600;
+    font-family: "JetBrains Mono", monospace;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     border: 1px solid var(--border-hover);
+}
+
+[data-theme="light"] .badge {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.15);
 }
 
 .image-gallery {
@@ -1234,13 +1152,6 @@ nav {
     border-color: var(--orange);
 }
 
-.modal-description {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-}
-
 .modal-links {
     display: flex;
     gap: 0.8rem;
@@ -1259,7 +1170,6 @@ nav {
     font-weight: 600;
     font-size: 0.78rem;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     transition: all var(--transition);
     border: 1px solid var(--text);
 }
@@ -1341,8 +1251,7 @@ nav {
 .form-group label {
     color: var(--text-muted);
     font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    letter-spacing: 0.04em;
     font-weight: 500;
 }
 
@@ -1411,6 +1320,41 @@ footer {
     color: var(--orange);
 }
 
+
+/* ================================
+   FOCUS VISIBLE (keyboard navigation)
+   ================================ */
+:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.form-group input:focus-visible,
+.form-group textarea:focus-visible {
+    outline: none;
+}
+
+/* ================================
+   REDUCED MOTION
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero-image img {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 
 /* ================================
    RESPONSIVE

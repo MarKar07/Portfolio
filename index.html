@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kari Markus - Portfolio</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="css.css" rel="stylesheet">
     <meta name="google-site-verification" content="C2XsgiBxXcEzphwGmU4xtiKNSIyOf4cru2wdvboEGUo" />
@@ -73,24 +73,25 @@
             <p class="hero-greeting" data-en="Hello, I'm">Hei, olen</p>
             <h1>Kari<br><em>Markus</em></h1>
 
-            <p class="hero-role lang-fi">Junior Software Developer · React · PHP · C# · WordPress<br>Valmistun toukokuussa 2026</p>
-            <p class="hero-role lang-en" style="display:none;">Junior Software Developer · React · PHP · C# · WordPress<br>Graduating in May 2026</p>
+            <p class="hero-role-title">Junior Software Developer</p>
+            <p class="hero-role-sub lang-fi">React · PHP · C# · WordPress · Valmistun toukokuussa 2026</p>
+            <p class="hero-role-sub lang-en" style="display:none;">React · PHP · C# · WordPress · Graduating in May 2026</p>
 
             <!-- Suomenkielinen bio -->
             <div class="hero-bio lang-fi">
-                <p>Uraa vaihtava 38-vuotias, jolla on 15 vuoden kokemus koulunkäynninohjaajana. Pitkä ura on opettanut minulle asioita, joita ei opeteta koodauskursseilla: kärsivällistä ongelmanratkaisua, selkeää kommunikaatiota, joustavuutta ja kyvyn toimia erilaisten ihmisten kanssa.</p>
+                <p>15 vuotta koulunkäynninohjaajana opetti kärsivällistä ongelmanratkaisua, selkeää kommunikaatiota ja kykyä toimia monenlaisten ihmisten kanssa. Taitoja, joita ei opeteta koodauskursseilla. Niiden tukena on nyt myös tekninen osaaminen.</p>
             </div>
 
             <!-- English bio -->
             <div class="hero-bio lang-en" style="display:none;">
-                <p>Career changer at 38 years old with 15 years as a classroom assistant. A long career that taught patient problem-solving, clear communication, flexibility and the ability to work with different people.</p>
+                <p>Fifteen years in human-centered work built skills that coding courses don't teach: patient problem-solving, clear communication, and the ability to work with all kinds of people. Now paired with a technical foundation.</p>
             </div>
 
             <div class="hero-actions">
-                <a href="CV.pdf" class="btn" target="_blank" rel="noopener noreferrer" data-en="Download CV">
+                <a href="#contact" class="btn" data-en="Contact">Ota yhteyttä</a>
+                <a href="CV.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" data-en="Download CV">
                     <i class="fas fa-download"></i> <span data-en="Download CV">Lataa CV</span>
                 </a>
-                <a href="#contact" class="btn btn-secondary" data-en="Contact">Ota yhteyttä</a>
             </div>
         </div>
         <div class="hero-image">
@@ -111,236 +112,139 @@
             <div class="skills-grid">
 
                 <!-- HTML & CSS -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="HTML & CSS -taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fas fa-code card-icon"></i>
-                                <h3>HTML & CSS</h3>
-                                <p class="skill-description" data-en="Responsive layouts, animations">Responsiiviset layoutit, animaatiot</p>
-                                <p class="skill-level" data-en="Advanced">Edistynyt</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see projects">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="HTML & CSS">HTML & CSS</h4>
-                                <span class="back-label" data-en="SKILLS">TAIDOT</span>
-                                <div class="skills-list">
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Flexbox & CSS Grid">Flexbox & CSS Grid</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="CSS animations & transitions">CSS-animaatiot & -siirtymät</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Responsiveness (mobile-first)">Responsiivisuus (mobile-first)</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="CSS variables & BEM">CSS-muuttujat & BEM</span></div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fas fa-code skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3>HTML & CSS</h3>
+                            <span class="skill-level" data-en="Advanced">Edistynyt</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="Flexbox & CSS Grid">Flexbox & CSS Grid</li>
+                        <li data-en="CSS animations & transitions">CSS-animaatiot & -siirtymät</li>
+                        <li data-en="Responsiveness (mobile-first)">Responsiivisuus (mobile-first)</li>
+                        <li data-en="CSS variables & BEM">CSS-muuttujat & BEM</li>
+                    </ul>
                 </div>
 
                 <!-- JavaScript -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="JavaScript-taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fab fa-js card-icon"></i>
-                                <h3>JavaScript</h3>
-                                <p class="skill-description" data-en="DOM, async/await, ES6+">DOM, async/await, ES6+</p>
-                                <p class="skill-level" data-en="Intermediate / Advanced">Keskitaso / Edistynyt</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see projects">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="JavaScript">JavaScript</h4>
-                                <span class="back-label" data-en="PROJECTS">PROJEKTIT</span>
-                                <div class="projects-list">
-                                    <div class="project-item" data-project="thunderstorm">
-                                        <i class="fas fa-chevron-right"></i>
-                                        <span>Thunderstorm Rock Festival</span>
-                                    </div>
-                                    <div class="project-item" data-project="portfolio">
-                                        <i class="fas fa-chevron-right"></i>
-                                        <span data-en="This Portfolio">Tämä portfolio</span>
-                                    </div>
-                                    <div class="project-item" data-project="maalaus">
-                                        <i class="fas fa-chevron-right"></i>
-                                        <span data-en="Painting Company Website">Maalausyrityksen sivusto</span>
-                                    </div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fab fa-js skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3>JavaScript</h3>
+                            <span class="skill-level" data-en="Intermediate / Advanced">Keskitaso / Edistynyt</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="DOM manipulation">DOM-manipulaatio</li>
+                        <li data-en="async/await & Promises">async/await & Promises</li>
+                        <li data-en="ES6+ syntax">ES6+-syntaksi</li>
+                        <li data-en="Event handling">Tapahtumankäsittely</li>
+                    </ul>
                 </div>
 
                 <!-- WordPress -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="WordPress-taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fab fa-wordpress card-icon"></i>
-                                <h3>WordPress</h3>
-                                <p class="skill-description" data-en="6 sites, themes, GDPR">6 sivustoa, teemat, GDPR</p>
-                                <p class="skill-level" data-en="Advanced">Edistynyt</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see projects">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="WordPress">WordPress</h4>
-                                <span class="back-label" data-en="SKILLS">TAIDOT</span>
-                                <div class="skills-list">
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="GDPR implementation">GDPR-toteutukset</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Performance optimization">Suorituskykyoptimointi</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Theme updates">Teemapäivitykset</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Internship with Wordpress">Työharjoittelu Wordpressin parissa</span></div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fab fa-wordpress skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3>WordPress</h3>
+                            <span class="skill-level" data-en="Advanced">Edistynyt</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="GDPR implementation">GDPR-toteutukset</li>
+                        <li data-en="Performance optimization">Suorituskykyoptimointi</li>
+                        <li data-en="Theme updates">Teemapäivitykset</li>
+                        <li data-en="Internship with WordPress">Työharjoittelu Wordpressin parissa</li>
+                    </ul>
                 </div>
 
                 <!-- PHP -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="PHP-taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fab fa-php card-icon"></i>
-                                <h3>PHP</h3>
-                                <p class="skill-description" data-en="Full-stack, REST API, auth">Full-stack, REST API, autentikointi</p>
-                                <p class="skill-level" data-en="Intermediate">Keskitaso</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see projects">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="PHP">PHP</h4>
-                                <span class="back-label" data-en="PROJECTS">PROJEKTIT</span>
-                                <div class="projects-list">
-                                    <div class="project-item" data-project="thunderstorm">
-                                        <i class="fas fa-chevron-right"></i>
-                                        <span>Thunderstorm Rock Festival</span>
-                                    </div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fab fa-php skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3>PHP</h3>
+                            <span class="skill-level" data-en="Intermediate">Keskitaso</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="Full-stack development">Full-stack kehitys</li>
+                        <li data-en="REST API">REST API</li>
+                        <li data-en="Authentication & sessions">Autentikointi & sessiot</li>
+                        <li data-en="PDO & prepared statements">PDO & prepared statements</li>
+                    </ul>
                 </div>
 
                 <!-- React -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="React-taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fab fa-react card-icon"></i>
-                                <h3>React</h3>
-                                <p class="skill-description" data-en="Components, hooks, state">Komponentit, hookit, tila</p>
-                                <p class="skill-level" data-en="Intermediate">Keskitaso</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see projects">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="React">React</h4>
-                                <span class="back-label" data-en="SKILLS">TAIDOT</span>
-                                <div class="skills-list">
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Components and hooks">Komponentit ja hookit</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="State management">Tilanhallinta</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="useState, useEffect">useState, useEffect</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="School projects">Kouluprojekteja</span></div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fab fa-react skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3>React</h3>
+                            <span class="skill-level" data-en="Intermediate">Keskitaso</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="Components and hooks">Komponentit ja hookit</li>
+                        <li data-en="State management">Tilanhallinta</li>
+                        <li data-en="useState, useEffect">useState, useEffect</li>
+                        <li data-en="School projects">Kouluprojekteja</li>
+                    </ul>
                 </div>
 
                 <!-- C# & Testaus -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="C# ja testaus -taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fas fa-vial card-icon"></i>
-                                <h3 data-en="C# & Testing">C# & Testaus</h3>
-                                <p class="skill-description" data-en="Manual testing, Selenium, C#">Manuaalitestaus, Selenium, C#</p>
-                                <p class="skill-level" data-en="Intermediate">Keskitaso</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see more">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="C# & Testing">C# & Testaus</h4>
-                                <span class="back-label" data-en="SKILLS">TAIDOT</span>
-                                <div class="skills-list">
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Manual software testing">Manuaalinen ohjelmistotestaus</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Test documentation">Testidokumentointi</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Selenium IDE">Selenium IDE</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="C# basics in Internship">C# perusteet työharjoittelussa</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Vue.js basics in Internship">Vue.js perusteet työharjoittelussa</span></div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fas fa-vial skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3 data-en="C# & Testing">C# & Testaus</h3>
+                            <span class="skill-level" data-en="Intermediate">Keskitaso</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="Manual software testing">Manuaalinen ohjelmistotestaus</li>
+                        <li data-en="Test documentation">Testidokumentointi</li>
+                        <li data-en="Selenium IDE">Selenium IDE</li>
+                        <li data-en="C# & Vue.js basics">C# & Vue.js perusteet</li>
+                    </ul>
                 </div>
 
                 <!-- Tietokanta -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="Tietokanta-taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fas fa-database card-icon"></i>
-                                <h3 data-en="Database">Tietokanta</h3>
-                                <p class="skill-description" data-en="SQL, MySQL, relational models">SQL, MySQL, relaatiomallit</p>
-                                <p class="skill-level" data-en="Intermediate">Keskitaso</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see projects">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="Database">Tietokanta</h4>
-                                <span class="back-label" data-en="PROJECTS">PROJEKTIT</span>
-                                <div class="projects-list">
-                                    <div class="project-item" data-project="thunderstorm">
-                                        <i class="fas fa-chevron-right"></i>
-                                        <span>Thunderstorm Rock Festival</span>
-                                    </div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fas fa-database skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3 data-en="Database">Tietokanta</h3>
+                            <span class="skill-level" data-en="Intermediate">Keskitaso</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="SQL queries">SQL-kyselyt</li>
+                        <li data-en="MySQL">MySQL</li>
+                        <li data-en="Relational models">Relaatiomallit</li>
+                        <li data-en="JOIN operations">JOIN-operaatiot</li>
+                    </ul>
                 </div>
 
-                <!-- Pehmeät taidot -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="Pehmeät taidot -taitokortit">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="flip-card-content">
-                                <i class="fas fa-people-arrows card-icon"></i>
-                                <h3 data-en="Soft Skills">Ihmissuhdetaidot</h3>
-                                <p class="skill-description" data-en="Communication, teamwork, patience">Viestintä, tiimityö, kärsivällisyys</p>
-                                <p class="skill-level" data-en="15 years experience">15 vuoden kokemus</p>
-                                <div class="flip-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to see more">Klikkaa nähdäksesi</span></div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="flip-card-back-content">
-                                <h4 data-en="Soft Skills">Ihmissuhdetaidot</h4>
-                                <span class="back-label" data-en="SKILLS">TAIDOT</span>
-                                <div class="skills-list">
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Clear communication">Selkeä kommunikaatio</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Patient problem-solving">Kärsivällinen ongelmanratkaisu</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Teamwork under pressure">Tiimityö paineen alla</span></div>
-                                    <div class="skill-item"><i class="fas fa-check"></i> <span data-en="Continuous learning mindset">Jatkuvan oppimisen asenne</span></div>
-                                </div>
-                                <div class="back-hint"><i class="fas fa-sync-alt"></i> <span data-en="Click to flip back">Klikkaa takaisin</span></div>
-                            </div>
+                <!-- Ihmissuhdetaidot -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <i class="fas fa-people-arrows skill-icon"></i>
+                        <div class="skill-card-title">
+                            <h3 data-en="Soft Skills">Ihmissuhdetaidot</h3>
+                            <span class="skill-level" data-en="15 years experience">15 vuoden kokemus</span>
                         </div>
                     </div>
+                    <ul class="skill-bullets">
+                        <li data-en="Clear communication">Selkeä kommunikaatio</li>
+                        <li data-en="Patient problem-solving">Kärsivällinen ongelmanratkaisu</li>
+                        <li data-en="Teamwork under pressure">Tiimityö paineen alla</li>
+                        <li data-en="Continuous learning mindset">Jatkuvan oppimisen asenne</li>
+                    </ul>
                 </div>
 
             </div>
@@ -444,7 +348,7 @@
     <!-- ================================
          PROJEKTI-MODAL
          ================================ -->
-    <div class="modal-overlay" id="project-modal" style="display:none;" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="project-modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
             <button class="modal-close" id="modal-close-btn" aria-label="Sulje">&times;</button>
             <h2 id="modal-title"></h2>
