@@ -102,7 +102,7 @@ function animateHeroImage() {
     if (heroImage) {
         setTimeout(() => {
             heroImage.classList.add('animate-in');
-        }, 500);
+        }, 200);
     }
 }
 
@@ -330,8 +330,18 @@ function openModal(projectId) {
 }
 
 function closeModal() {
-    document.getElementById('project-modal').style.display = 'none';
-    document.body.style.overflow = '';
+    const modal = document.getElementById('project-modal');
+    modal.classList.add('is-closing');
+
+    function onAnimationEnd(e) {
+        if (e.target !== modal) return;
+        modal.removeEventListener('animationend', onAnimationEnd);
+        modal.style.display = 'none';
+        modal.classList.remove('is-closing');
+        document.body.style.overflow = '';
+    }
+
+    modal.addEventListener('animationend', onAnimationEnd);
 }
 
 function changeImage(direction) {
